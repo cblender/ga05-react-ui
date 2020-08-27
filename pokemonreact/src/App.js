@@ -9,28 +9,34 @@
                                                                                             
 import React, { Component } from 'react';
 import './App.css';
+import Pokemon from './Pokemon';
 
 class App extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      pokeList: []
+    }
+    this.pokeQuantity = 151
+    this.pokeGeneration = 1
+    this.pokeList = []
   }
 
-  pokeQuantity = 151
-  pokeGeneration = 1
-  pokeList = []
+  
 
-  fetchPokeList () {
+  fetchPokeList = () => {
     fetch("https://pokeapi.co/api/v2/pokemon?limit=151")
     .then(response => response.json())
-    .then(function(allpokemon){
-      allpokemon.results.forEach(function(pokemon){
-        let url = pokemon.url
-        fetch(url)
-        .then(response => response.json())
-        .then(function(pokeData) {
-          this.pokeList.push(pokeData)
-          console.log(pokeData)
-        })
+    .then((allpokemon) => {
+      
+      console.log("========================================")
+      console.log(allpokemon)
+      console.log("========================================")
+      allpokemon.results.forEach((pokemon) => {
+        let pokeList = this.state.pokeList
+        pokeList.push(pokemon)
+        this.setState({pokeList})
+        console.log(pokemon)
       })
     })
     console.log(this.pokeList)
@@ -45,14 +51,24 @@ class App extends Component {
     })
   }
 
-  render () {
-
+  componentDidMount () {
     this.fetchPokeList();
+  }
+
+  render () {
 
     return (
       <div className="appContainerDoNotTouch">
         <div>
           <h1>PokeReact</h1>
+        </div>
+        <div className="container">
+          {this.state.pokeList.map(
+            (pokemon, i) => {
+              return (<Pokemon key={i} name={pokemon.name} url={pokemon.url}/>)
+              console.log( pokemon /*LOG INDIVIDUAL POKEMON*/ )
+            }
+          )}  
         </div>
       </div> // END DIV CLASS "appContainerDoNotTouch".
     )
