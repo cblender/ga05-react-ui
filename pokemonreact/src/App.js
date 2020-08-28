@@ -10,6 +10,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Pokemon from './Pokemon';
+import Pokedex from './Pokedex';
 
 class App extends Component {
   constructor(props){
@@ -51,6 +52,10 @@ class App extends Component {
     })
   }
 
+  handlePokedex () {
+
+  }
+
   componentDidMount () {
     this.fetchPokeList();
   }
@@ -62,11 +67,14 @@ class App extends Component {
         <div>
           <h1>PokeReact</h1>
         </div>
+        <div className="spacer">
+          <p>a React UI Testbed by Chris Blendermann</p>
+        </div>
         <div className="container">
           {this.state.pokeList.map(
             (pokemon, i) => {
-              return (<Pokemon key={i} name={pokemon.name} url={pokemon.url}/>)
               console.log( pokemon /*LOG INDIVIDUAL POKEMON*/ )
+              return (<Pokemon key={i} name={pokemon.name} url={pokemon.url} />)
             }
           )}  
         </div>

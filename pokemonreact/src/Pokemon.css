@@ -1,3 +1,12 @@
 .container {
-    display: inline-block;
+    text-align: center;
+}
+
+.pokeContainerDoNotTouch{
+    width: 169px;
+    height: 169px;
+}
+
+.hidden {
+    display: none;
 }
