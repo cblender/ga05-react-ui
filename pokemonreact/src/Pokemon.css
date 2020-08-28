@@ -16,6 +16,23 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+}
+
+.pokedex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 69vh;
     color: white;
     background: black;
+}
+
+.pokeExit {
+    width: 50px;
+    height: 50px;
+    background: rgba(0,0,0,0);
+    color: white;
+    font-size: 36px;
 }

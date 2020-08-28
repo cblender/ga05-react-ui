@@ -29,6 +29,7 @@ class Pokemon extends Component {
             pokeInfo = pokeData
             this.setState({pokeInfo})
         })
+        
     }    
 
     handlePokedex = () => {
@@ -43,6 +44,25 @@ class Pokemon extends Component {
             let bool = false
             this.setState({showPokedex: bool})
         }
+        
+        // THE GREAT POKEMON INFORMATION TRAWLER
+        let type1 = this.state.pokeInfo.types
+        let imgsrc = this.state.pokeInfo.sprites.other.dream_world.front_default
+        let statXP = this.state.pokeInfo.base_experience
+        let statHP = this.state.pokeInfo.stats[0].base_stat
+        let statATK = this.state.pokeInfo.stats[1].base_stat
+        let statDEF = this.state.pokeInfo.stats[2].base_stat
+        let statSPD = this.state.pokeInfo.stats[5].base_stat
+        let statWeight = this.state.pokeInfo.weight
+
+        this.setState({img: imgsrc})
+        this.setState({XP: statXP})
+        this.setState({HP: statHP})
+        this.setState({ATK: statATK})
+        this.setState({DEF: statDEF})
+        this.setState({SPD: statSPD})
+        this.setState({WEI: statWeight})
+
     }
 
     render = () => {
@@ -53,10 +73,21 @@ class Pokemon extends Component {
             pokedex = 
                 <div className="pokedex">
                     <h1>{this.state.pokeInfo.name}</h1>
+                    <img src={this.state.img}></img>
+                    <h3>{this.state.pokeInfo.types[0].type.name}</h3>
+                    <div>
+                        <h4>    Base XP: {this.state.XP} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                                HP: {this.state.HP} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Atack: {this.state.ATK} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Defense: {this.state.DEF} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Speed: {this.state.SPD} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                Weight: {this.state.WEI}</h4>
+                    </div>
                 </div>
+                
         }
         else {
-            pokedex = ''
+            pokedex = <div style={{display:'none'}}></div>
         }
 
         return(
@@ -65,10 +96,6 @@ class Pokemon extends Component {
                 <div className="container">
                     <h3>{this.props.name}</h3>
                     <a href="{this.props.url}">{this.props.name}</a>
-                </div>
-
-                <div className="pokedex" style={{display:'none', color:'white', background:'black'}} >
-                    <p>Pokedex Placeholder Text</p>   
                 </div>
 
                 <div className="pokedexContainer">
