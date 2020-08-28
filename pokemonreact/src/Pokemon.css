@@ -1,5 +1,6 @@
 .container {
     text-align: center;
+    height: 125px;
 }
 
 .pokeContainerDoNotTouch{
@@ -35,4 +36,8 @@
     background: rgba(0,0,0,0);
     color: white;
     font-size: 36px;
+}
+
+.pokeTitle {
+    transform: translate(0px, 100px)
 }

@@ -28,7 +28,11 @@ class Pokemon extends Component {
             let pokeInfo = this.state.pokeInfo
             pokeInfo = pokeData
             this.setState({pokeInfo})
+
+            let imgsrc = this.state.pokeInfo.sprites.other.dream_world.front_default
+            this.setState({img: imgsrc})
         })
+
         
     }    
 
@@ -46,8 +50,8 @@ class Pokemon extends Component {
         }
         
         // THE GREAT POKEMON INFORMATION TRAWLER
-        let type1 = this.state.pokeInfo.types
-        let imgsrc = this.state.pokeInfo.sprites.other.dream_world.front_default
+
+
         let statXP = this.state.pokeInfo.base_experience
         let statHP = this.state.pokeInfo.stats[0].base_stat
         let statATK = this.state.pokeInfo.stats[1].base_stat
@@ -55,7 +59,6 @@ class Pokemon extends Component {
         let statSPD = this.state.pokeInfo.stats[5].base_stat
         let statWeight = this.state.pokeInfo.weight
 
-        this.setState({img: imgsrc})
         this.setState({XP: statXP})
         this.setState({HP: statHP})
         this.setState({ATK: statATK})
@@ -68,6 +71,7 @@ class Pokemon extends Component {
     render = () => {
         let pokedex
         let show = this.state.showPokedex
+        let backgroundStyle = {backgroundImage:"url("+this.state.img+")", backgroundSize:"contain", backgroundPosition:"center center", backgroundRepeat:"no-repeat"}
 
         if (show) {
             pokedex = 
@@ -76,12 +80,14 @@ class Pokemon extends Component {
                     <img src={this.state.img}></img>
                     <h3>{this.state.pokeInfo.types[0].type.name}</h3>
                     <div>
-                        <h4>    Base XP: {this.state.XP} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-                                HP: {this.state.HP} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                Atack: {this.state.ATK} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                Defense: {this.state.DEF} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                Speed: {this.state.SPD} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                Weight: {this.state.WEI}</h4>
+                        <h4>    
+                            Base XP: {this.state.XP} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                            HP: {this.state.HP} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Atack: {this.state.ATK} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Defense: {this.state.DEF} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Speed: {this.state.SPD} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            Weight: {this.state.WEI}
+                        </h4>
                     </div>
                 </div>
                 
@@ -93,9 +99,8 @@ class Pokemon extends Component {
         return(
             <div className="pokeContainerDoNotTouch" onClick={this.handlePokedex}>
  
-                <div className="container">
-                    <h3>{this.props.name}</h3>
-                    <a href="{this.props.url}">{this.props.name}</a>
+                <div className="container" style={backgroundStyle}>
+                    <h3 className="pokeTitle">{this.props.name}</h3>
                 </div>
 
                 <div className="pokedexContainer">
