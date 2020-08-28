@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/cblender.github.io/ga05-react-ui/precache-manifest.44316da8570beccf9bc15c072e6663b5.js"
+  "/cblender.github.io/ga05-react-ui/precache-manifest.6da5945d1912e008c3eefaca53a2a95b.js"
 );
 
 self.addEventListener('message', (event) => {
