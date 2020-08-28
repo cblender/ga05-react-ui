@@ -37,23 +37,10 @@ class App extends Component {
         let pokeList = this.state.pokeList
         pokeList.push(pokemon)
         this.setState({pokeList})
-        console.log(pokemon)
+        // console.log(pokemon)
       })
     })
-    console.log(this.pokeList)
-  }
-
-  fetchPokemon (pokemon) {
-    let url = pokemon.url
-    fetch(url)
-    .then(response => response.json())
-    .then(function(pokeData) {
-      console.log(pokeData)
-    })
-  }
-
-  handlePokedex () {
-
+    // console.log(this.pokeList)
   }
 
   componentDidMount () {
@@ -68,16 +55,20 @@ class App extends Component {
           <h1>PokeReact</h1>
         </div>
         <div className="spacer">
-          <p>a React UI Testbed by Chris Blendermann</p>
+          <p>a React UI by Chris Blendermann</p>
         </div>
         <div className="container">
           {this.state.pokeList.map(
             (pokemon, i) => {
-              console.log( pokemon /*LOG INDIVIDUAL POKEMON*/ )
               return (<Pokemon key={i} name={pokemon.name} url={pokemon.url} />)
             }
           )}  
         </div>
+
+        <div className="pokedex" style={{display:'none', color:'white', background:'black'}} >
+                    <p>Pokedex Placeholder Text</p>
+                    
+                </div>
       </div> // END DIV CLASS "appContainerDoNotTouch".
     )
   }

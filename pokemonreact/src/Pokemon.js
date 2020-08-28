@@ -1,32 +1,63 @@
 import React, { Component } from 'react';
 import './Pokemon.css';
+import Pokedex from './Pokedex';
 
 class Pokemon extends Component {
     
     constructor(props) {
         super(props);
+        this.render = this.render.bind(this);
         this.state = {
             name: this.props.name,
             url: this.props.url,
-            pokeInfo: ''
+            pokeInfo: '',
+            showPokedex: false
         };
+
+        // console.log(this.state)
     }
 
-    fetchPokemon = (pokemon) => {
-        let url = pokemon.url
+    componentDidMount = () => {
+        // console.log("FIRED! componentDidMount for "+this.state.name)
+
+        let url = this.state.url
+
         fetch(url)
         .then(response => response.json())
         .then((pokeData) => {
-            console.log("FIRED! fetchPokemon for Pokemon Component")
-            console.log(pokeData)
+            let pokeInfo = this.state.pokeInfo
+            pokeInfo = pokeData
+            this.setState({pokeInfo})
         })
+    }    
+
+    handlePokedex = () => {
+        console.log("FIRED! handlePokedex for "+this.state.pokeInfo.name)
+        console.log(this.state.pokeInfo, this.state.showPokedex)
+        // console.log(this.state.pokeInfo.sprites.other.official-artwork.front_default)
+        if (!this.state.showPokedex) {
+            let bool = true
+            this.setState({showPokedex: bool})
+        }
+        else {
+            let bool = false
+            this.setState({showPokedex: bool})
+        }
     }
 
-    handlePokedex = (url) => {
-        console.log("FIRED! HANDLEPOKEDEX FOR "+this.state.name)
-    }
+    render = () => {
+        let pokedex
+        let show = this.state.showPokedex
 
-    render() {
+        if (show) {
+            pokedex = 
+                <div className="pokedex">
+                    <h1>{this.state.pokeInfo.name}</h1>
+                </div>
+        }
+        else {
+            pokedex = ''
+        }
 
         return(
             <div className="pokeContainerDoNotTouch" onClick={this.handlePokedex}>
@@ -37,8 +68,11 @@ class Pokemon extends Component {
                 </div>
 
                 <div className="pokedex" style={{display:'none', color:'white', background:'black'}} >
-                    <p>Pokedex Placeholder Text</p>
-                    
+                    <p>Pokedex Placeholder Text</p>   
+                </div>
+
+                <div className="pokedexContainer">
+                    {pokedex}
                 </div>
 
             </div>

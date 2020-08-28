@@ -7,18 +7,8 @@ class Pokedex extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: this.props.name,
-            url: this.props.url
+            pokeInfo: this.props.pokeInfo
         };
-    }
-
-    fetchPokemon (pokemon) {
-        let url = pokemon.url
-        fetch(url)
-        .then(response => response.json())
-        .then(function(pokeData) {
-          console.log(pokeData)
-        })
     }
 
     render() {
@@ -27,8 +17,7 @@ class Pokedex extends Component {
             <div className="dexContainerDoNotTouch">
  
                 <div className="container">
-                    <h3>{this.props.name}</h3>
-                    <a href="{this.props.url}">{this.props.name}</a>
+                    <h3>POKEDEX CONTAINER</h3>
                 </div>
                 <button>EXIT POKEDEX</button>
 
